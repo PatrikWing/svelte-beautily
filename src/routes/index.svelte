@@ -4,7 +4,7 @@
 <script>
 
   const products = [
-    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", description: "This is a great product, you should really buy it. It contains every atom in the atomic table and it will do wonders for you life.", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
     {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
     {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
     {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
@@ -62,6 +62,8 @@
 
   let color = "pink"
 
+  let clickedProduct = null
+
 </script>
 
 <body>
@@ -75,10 +77,25 @@
     </li>
     <button class="material-icons-outlined" style="margin-left:auto;margin-right:clamp(5px, 10%, 120px);color:{colorSchemes[color].cartIcon}">shopping_cart</button>
   </nav>
+  {#if clickedProduct}
+  <div class="infoWrapperBackground" style="background-color:{colorSchemes[color].navBar}">
+    <div class="infoWrapper">
+      <span on:click={() => clickedProduct = null} >X</span>
+      <div>
+      <img src={clickedProduct.photo} alt="productPhoto">
+        <p>{clickedProduct.brand}</p>
+        <p>{clickedProduct.title}</p>
+        <p>{clickedProduct.price} {clickedProduct.currency}</p>
+        <p class="material-icons-outlined addToCart">add_shopping_cart</p>
+        <p>{clickedProduct.description?clickedProduct.description:""}</p>
+      </div>
+    </div>
+  </div>
+  {/if}
   <div class="productWrapper hideScroll hidescroll">
     {#each filteredProducts as product}
     {#if product.stock}
-    <div class="card" style="background-image:url({product.photo});background-size:cover">
+    <div on:click={() => clickedProduct = product} class="card" style="background-image:url({product.photo});background-size:cover">
       <p style="background-color:{colorSchemes[color].cardTextBackground};color:{colorSchemes[color].cardText}">{product.brand}<br>{product.title}<br>{product.price} {product.currency?product.currency:"" }</p>
     </div>
     {/if}
@@ -166,7 +183,7 @@ nav{
   top: 0%;
   width: 100%;
   opacity: 90%;
-  z-index: 99999;
+  z-index: 1;
   height: 80px;
 }
 
@@ -185,6 +202,74 @@ nav h1{
   padding: 10px;
   font-family: 'Satisfy', cursive;
   font-size: clamp(1rem,5vh,2rem);
+}
+
+.infoWrapper{
+  width: clamp(250px,80%,600px);
+  height: clamp(250px,60%,600px);
+  background-color: white;
+  position: fixed;
+  font-size: clamp(1rem,3vh,2rem);
+  font-family: 'Oswald', sans-serif;
+  padding-left: 5px;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.infoWrapper span{
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: black;
+  transition: font-size 0.2s;
+}
+
+.infoWrapper span:hover{
+  font-size: 2rem;
+}
+
+.infoWrapper span:hover{
+  cursor: pointer;
+}
+
+.infoWrapper img{
+  height: clamp(150px,100%,200px);
+  transition: transform 0.5s;
+}
+.infoWrapper img:hover{
+  transform: scale(1.5) translateX(30px) translateY(30px);
+  opacity: 90%;
+  border-radius: 30px;
+  border-radius: 1px solid rgb(202, 202, 202);
+  box-shadow: 1px 2px 14px 3px rgba(0,0,0,0.05);
+}
+
+.addToCart{
+  color:green;
+  font-size:3rem;
+  text-align:right;
+  padding-right:5%;
+  transition: font-size 0.5s;
+  margin-right: auto;
+}
+
+.addToCart:hover{
+  cursor: pointer;
+}
+
+.infoWrapperBackground{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  background-color: #d6d6d6;
 }
 
 </style>
