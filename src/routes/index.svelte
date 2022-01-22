@@ -106,7 +106,7 @@ body{
 
 .productWrapper{
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 120px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -116,6 +116,7 @@ body{
   row-gap: 40px;
   overflow-y: scroll;
   padding-top: 100px;
+  padding-bottom: 20px;
 }
 
 .card{
@@ -137,6 +138,7 @@ body{
   font-size: clamp(1rem,3vh,2rem);
   opacity: 85%;
   font-family: 'Oswald', sans-serif;
+  padding-left: 5px;
 }
 
 button{
