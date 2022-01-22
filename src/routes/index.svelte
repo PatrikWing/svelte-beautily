@@ -2,35 +2,84 @@
 <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
 <script>
+
   const products = [
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
-    {title: "Product", price: 100, currency: "SEK", stock:1, category: "clean", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Makeup", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:0, category: "Hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Hair", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Skin", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Other", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Other", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Other", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Other", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
+    {title: "Product", brand: "Aussie", price: 100, currency: "SEK", stock:1, category: "Other", photo:"https://www.ahlens.se/INTERSHOP/static/WFS/Ahlens-AhlensSE-Site/-/Ahlens/sv_SE/ProductListLarge/84APL3S590_8001841396828_front.jpg"},
   ]
   let filteredProducts = products
+
+  function getFilters(products){
+    let filters = []
+    products.forEach(element => {
+      if(!filters.includes(element.category)) filters.push(element.category)
+    });
+    return filters
+  }
+
+  let filters = getFilters(products)
+
+  const dictionary = {
+    se:{
+      "Makeup": "Smink",
+      "Hair":"Hår",
+      "Skin":"Hud",
+      "Other":"Annat",
+      "All":"Allt",
+      "Bike":"Cykel"
+    }
+  }
+
+  const colorSchemes = {
+    pink:{
+      navBar: "#f2e1f3",
+      cartIcon: "#d4b2c9",
+      filterBorder: "white",
+      companyName: "rgb(58, 58, 58)",
+      cardTextBackground: "rgb(241, 203, 229)",
+      cardText: "rgb(65, 65, 65)",
+    }
+  }
+
+  let color = "pink"
+
 </script>
 
 <body>
-  <nav class="hideScroll hidescroll">
-    <h1>Beautily</h1>
-    <li class="hidescroll hideScroll">
+  <nav class="hideScroll hidescroll" style="background-color:{colorSchemes[color].navBar}">
+    <h1 style="color:{colorSchemes[color].companyName}">Beautily</h1>
+    <li class="hidescroll hideScroll" style="border:2px solid {colorSchemes[color].filterBorder}">
       <button on:click={() => filteredProducts = products}>Allt</button>
-      <button on:click={() => filteredProducts = products.filter(element => element.category === "makeup")}>Smink</button>
-      <button on:click={() => filteredProducts = products.filter(element => element.category === "hair")}>Hår</button>
-      <button on:click={() => filteredProducts = products.filter(element => element.category === "clean")}>Clean</button>
+      {#each filters as filter }
+      <button on:click={() => filteredProducts = products.filter(element => element.category === filter)}>{dictionary.se[filter]}</button>
+      {/each}
     </li>
-    <button class="material-icons-outlined" style="margin-left:auto;margin-right:clamp(5px, 10%, 120px)">shopping_cart</button>
+    <button class="material-icons-outlined" style="margin-left:auto;margin-right:clamp(5px, 10%, 120px);color:{colorSchemes[color].cartIcon}">shopping_cart</button>
   </nav>
   <div class="productWrapper hideScroll hidescroll">
     {#each filteredProducts as product}
     {#if product.stock}
     <div class="card" style="background-image:url({product.photo});background-size:cover">
-      <p>{product.title}<br> {product.price?product.price:"Ur lager"} {product.currency?product.currency:"" }</p>
+      <p style="background-color:{colorSchemes[color].cardTextBackground};color:{colorSchemes[color].cardText}">{product.brand}<br>{product.title}<br>{product.price} {product.currency?product.currency:"" }</p>
     </div>
     {/if}
     {/each}
@@ -81,13 +130,11 @@ body{
 
 .card:hover{
   cursor: pointer;
-  transform: scale(1.1)
+  transform: scale(1.05)
 }
 
 .card p{
-  background-color: rgb(241, 203, 229);
   font-size: clamp(1rem,3vh,2rem);
-  color:rgb(65, 65, 65);
   opacity: 85%;
   font-family: 'Oswald', sans-serif;
 }
@@ -95,13 +142,16 @@ body{
 button{
   min-width: 55px;
   border-radius: 30px;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(214, 214, 214);
+  border: 1px solid #d6d6d6;
   transition: background-color 0.5s;
   padding: 10px;
 }
 
 button:hover{
+  background-color: rgb(202, 202, 202);
+}
+
+button:focus{
   background-color: rgb(202, 202, 202);
 }
 
@@ -113,7 +163,6 @@ nav{
   position: fixed;
   top: 0%;
   width: 100%;
-  background-color: rgb(242, 225, 243);
   opacity: 90%;
   z-index: 99999;
   height: 80px;
@@ -126,21 +175,14 @@ li{
   align-items: center;
   column-gap: 10px;
   overflow-x: scroll;
-  border: 2px solid white;
   border-radius: 5px;
   padding: 5px;
 }
 
 nav h1{
   padding: 10px;
-  color:rgb(58, 58, 58);
   font-family: 'Satisfy', cursive;
   font-size: clamp(1rem,5vh,2rem);
-}
-
-.material-icons-outlined{
-  color: rgb(212, 178, 201);
-
 }
 
 </style>
