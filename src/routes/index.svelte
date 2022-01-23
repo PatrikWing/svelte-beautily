@@ -57,6 +57,8 @@
       companyName: "rgb(58, 58, 58)",
       cardTextBackground: "rgb(241, 203, 229)",
       cardText: "rgb(65, 65, 65)",
+      infoWrapperBackground: "rgba(242, 225, 243, 0.671)",
+      addToCart: "pink",
     }
   }
 
@@ -78,17 +80,15 @@
     <button class="material-icons-outlined" style="margin-left:auto;margin-right:clamp(5px, 10%, 120px);color:{colorSchemes[color].cartIcon}">shopping_cart</button>
   </nav>
   {#if clickedProduct}
-  <div class="infoWrapperBackground" style="background-color:{colorSchemes[color].navBar}">
+  <div class="infoWrapperBackground" style="background-color:{colorSchemes[color].infoWrapperBackground}">
     <div class="infoWrapper">
       <span on:click={() => clickedProduct = null} >X</span>
-      <div>
       <img src={clickedProduct.photo} alt="productPhoto">
-        <p>{clickedProduct.brand}</p>
-        <p>{clickedProduct.title}</p>
-        <p>{clickedProduct.price} {clickedProduct.currency}</p>
-        <p class="material-icons-outlined addToCart">add_shopping_cart</p>
-        <p>{clickedProduct.description?clickedProduct.description:""}</p>
-      </div>
+      <p>{clickedProduct.brand}</p>
+      <p>{clickedProduct.title}</p>
+      <p>{clickedProduct.price} {clickedProduct.currency}</p>
+      <p class="material-icons-outlined addToCart" style="color:{colorSchemes[color].addToCart}">add_shopping_cart</p>
+      <p>{clickedProduct.description?clickedProduct.description:""}</p>
     </div>
   </div>
   {/if}
@@ -205,8 +205,8 @@ nav h1{
 }
 
 .infoWrapper{
-  width: clamp(250px,80%,600px);
-  height: clamp(250px,60%,600px);
+  width: clamp(200px,80%,500px);
+  height: clamp(200px,60%,500px);
   background-color: white;
   position: fixed;
   font-size: clamp(1rem,3vh,2rem);
@@ -214,8 +214,8 @@ nav h1{
   padding-left: 5px;
   padding: 30px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  word-wrap: break-word;
 }
 
 .infoWrapper span{
@@ -237,28 +237,34 @@ nav h1{
 }
 
 .infoWrapper img{
-  height: clamp(150px,100%,200px);
+  margin-right: auto;
+  height: clamp(100px,100%,150px);
   transition: transform 0.5s;
 }
 .infoWrapper img:hover{
-  transform: scale(1.5) translateX(30px) translateY(30px);
+  transform: scale(2) translateX(30px) translateY(30px);
   opacity: 90%;
-  border-radius: 30px;
   border-radius: 1px solid rgb(202, 202, 202);
   box-shadow: 1px 2px 14px 3px rgba(0,0,0,0.05);
+}
+
+@keyframes cartIntro {
+  from {right:0%; bottom: 10%;}
+  to {right:10%; bottom: 10%;}
 }
 
 .addToCart{
   color:green;
   font-size:3rem;
-  text-align:right;
-  padding-right:5%;
-  transition: font-size 0.5s;
-  margin-right: auto;
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  transition: transform 0.5s;
+  animation: cartIntro 0.5s;
 }
 
 .addToCart:hover{
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 .infoWrapperBackground{
@@ -269,7 +275,6 @@ nav h1{
   align-items: center;
   position: fixed;
   z-index: 1;
-  background-color: #d6d6d6;
 }
 
 </style>
