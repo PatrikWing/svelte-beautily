@@ -1,18 +1,22 @@
 <script>
-  import {colorSchemes,dictionaries} from "../utility/utility.js"
-  import {clickedProduct} from "../utility/products.js"
+  /* STORES */
+  import {colorSchemeStore,dictionaryStore} from "../stores/utility.js"
+  import {selectedProductStore} from "../stores/products.js"
   let colorScheme
   let dictionary
   let product
-  colorSchemes.subscribe(value => {
+  let cart
+  colorSchemeStore.subscribe(value => {
 		colorScheme = value;
 	});
-  dictionaries.subscribe(value => {
+  dictionaryStore.subscribe(value => {
 		dictionary = value;
 	});
-  clickedProduct.subscribe(value => {
+  selectedProductStore.subscribe(value => {
 		product = value;
 	});
+
+  /*PROPS*/
   export let color
   export let language
 </script>
@@ -20,12 +24,12 @@
 
 <div class="infoWrapperBackground" style="background-color:{colorScheme[color].infoWrapperBackground}">
   <div class="infoWrapper">
-    <span on:click={() => clickedProduct.update(() => null)} >X</span>
+    <span on:click={() => selectedProductStore.update(() => null)} >X</span>
     <img src={product.photo} alt="productPhoto">
     <p style="font-size:1.6rem;border-bottom:1px solid grey">{product.brand} - {product.title}</p>
     <p style="font-size:1.4rem">Pris: {product.price} {product.currency}</p>
     <p style="font-size:1.3rem">{product.description?product.description:""}</p>
-    <p class="stockIndicator" style="font-size:1.4rem">Lagernivå: {product.stock < 5 ? "Slut 😬" : product.stock < 20 ? "Låg 😱" : product.stock < 50 ? "Medel 😃" : "Hög 😍"}</p>
+    <p class="stockIndicator" style="font-size:1.4rem">Lagernivå: {product.stock < 5 ? "Slut 😬" : product.stock < 20 ? "Låg 😮" : product.stock < 50 ? "Medel 😃" : "Hög 😍"}</p>
     <p class="material-icons-outlined addToCart" style="color:{colorScheme[color].addToCart}">add_shopping_cart</p>
   </div>
 </div>

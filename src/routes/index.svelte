@@ -4,20 +4,21 @@
 
 
 <script>
-  import {colorSchemes,dictionaries} from "../utility/utility.js"
-  import {clickedProduct} from "../utility/products"
+  import {colorSchemeStore,dictionaryStore} from "../stores/utility.js"
+  import {selectedProductStore} from "../stores/products"
+  // @ts-ignore
   import InfoWrapper from "../components/InfoWrapper.svelte";
 
   let colorScheme
   let dictionary
   let selectedProduct
-  colorSchemes.subscribe(value => {
+  colorSchemeStore.subscribe(value => {
 		colorScheme = value;
 	});
-  dictionaries.subscribe(value => {
+  dictionaryStore.subscribe(value => {
 		dictionary = value;
 	});
-  clickedProduct.subscribe(value => {
+  selectedProductStore.subscribe(value => {
 		selectedProduct = value;
 	});
 
@@ -80,7 +81,12 @@
   <div class="productWrapper hideScroll hidescroll">
     {#each filteredProducts as product}
     {#if product.stock}
-    <div on:click={() => clickedProduct.update(() => product)} class="card" style="background-image:url({product.photo});background-size:cover">
+    <div on:click={() => selectedProductStore.update(() => product)} class="card" style="background-image:url({product.photo});background-size:cover">
+     <!-- TODO: implement sales logic
+      {#if product.salePrice}
+      <p>🤑</p>
+      {/if}
+      -->
       <p style="background-color:{colorScheme[color].cardTextBackground};color:{colorScheme[color].cardText}">{product.brand}<br>{product.title}<br>{product.price} {product.currency?product.currency:"" }</p>
     </div>
     {/if}

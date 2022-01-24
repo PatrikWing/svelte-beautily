@@ -1,5 +1,5 @@
 import { readable } from 'svelte/store';
-export const dictionaries = readable({
+export const dictionaryStore = readable({
   se:{
     "Makeup": "Smink",
     "Hair":"Hår",
@@ -9,7 +9,7 @@ export const dictionaries = readable({
     "Bike":"Cykel"
   }
 })
-export const colorSchemes = readable({
+export const colorSchemeStore = readable({
   pink:{
     navBar: "#f2e1f3",
     cartIcon: "#d4b2c9",
